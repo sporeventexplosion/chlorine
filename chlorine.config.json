@@ -1,0 +1,106 @@
+{
+  "chinese": "./data/chinese.txt",
+  "pinyin": "./data/pinyin.txt",
+  "output": "./data/chlorine-generated.json",
+  "defaults": [
+    {
+      "type": "grouped-lines",
+      "group_after": 1,
+      "line_style": "p-group-line",
+      "group_style": "p-group"
+    }
+  ],
+  "sections": [
+    {
+      "name": "title",
+      "style": "p-title",
+      "type": "linear",
+      "before": 1,
+      "after": 2
+    },
+    {
+      "name": "sec1h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec1b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    },
+    {
+      "name": "sec2h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec2b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    },
+    {
+      "name": "sec3h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec3b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    },
+    {
+      "name": "sec4h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec4b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    },
+    {
+      "name": "sec5h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec5b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    },
+    {
+      "name": "sec6h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec6b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    },
+    {
+      "name": "sec7h",
+      "style": "p-heading",
+      "type": "linear",
+      "before": 1,
+      "after": 1
+    },
+    {
+      "name": "sec7b",
+      "style": "p-body",
+      "type": "grouped-lines"
+    }
+  ]
+}
