@@ -1,5 +1,3 @@
-import * as fs from 'fs';
-
 const depinyinify = (src: string) => {
   src = src.replace(/\u00fc/g, 'v');
   const a = 'āáǎà';
@@ -41,26 +39,3 @@ const depinyinify = (src: string) => {
   }
   return src + '0';
 };
-
-const group = (n: number) => <T>(arr: T[]): T[][] => {
-  const ret: T[][] = [];
-  let l = 0;
-  for (let i = 0; i < arr.length;) {
-    const g: T[] = [];
-    for (let j = 0; j < n && i < arr.length; i++, j++) {
-      g.push(arr[i]);
-    }
-    ret.push(g);
-  }
-  return ret;
-};
-
-fs.writeFileSync('autopinyin-processed.txt', fs.readFileSync('autopinyin.txt')
-  .toString()
-  .split('\n')
-  .map((line) => line.trim())
-  .filter((line) => line.length > 0)
-  .map((line) => group(3)(
-    line.replace(/,/g, '').split(' ').map((c) => depinyinify(c))
-  ).map((g) => g.join(' ')).join(', ')).join('\n\n')
-);
