@@ -1,5 +1,3 @@
-import pinyin from './pinyin';
-
 const getParts = (input: string): Array<[string, string]> => {
   const partStartRegex = /\n#\(/g;
   const partRegex = /\n#\([0-9a-z\-]+\)/gi;
