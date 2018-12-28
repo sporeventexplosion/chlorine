@@ -23,7 +23,7 @@ const pinyin = (src: string): string => {
   }
   const finalStart = str.search(/(?:a|e|ai|ei|ao|ou|an|en|ang|eng|ong|er|i|in|ing|u|un|v|vn)$/);
   if (finalStart === -1) {
-    // the input has a tone but doesn't have a final
+    // the input has a tone but does not have a final
     throw new Error(`Invalid source string"${str}": syllables with tone but without final are not supported`);
   }
   return (str.substring(0, finalStart) + diacriticals[str[finalStart]][tone - 1] + str.substring(finalStart + 1))
@@ -31,5 +31,3 @@ const pinyin = (src: string): string => {
 };
 
 export default pinyin;
-
-// console.log('di4 zi3 gui1 sheng4 ren2 xun4 shou3 xiao4 ti4 ci4 jin3 xin4 zhuang4'.split(' ').map((u) => pinyin(u)).join(' '));
