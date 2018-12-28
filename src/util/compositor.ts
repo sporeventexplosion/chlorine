@@ -34,11 +34,11 @@ interface ICompositorOptions {
 
   lineBefore?: number;
   lineAfter?: number;
-  lineStyle?: number;
+  lineStyle?: string;
 
   groupBefore?: number;
   groupAfter?: number;
-  groupStyle?: number;
+  groupStyle?: string;
 }
 
 const defaultCompositorOptions = {
@@ -60,18 +60,6 @@ const getLinear: BoxCompsitor<string[], ILinearBox> = (chinese, ruby, options = 
     style: options.style || defaultCompositorOptions.style,
     before: options.before || defaultCompositorOptions.before,
     after: options.after || defaultCompositorOptions.after,
-  };
-};
-
-const LinearCompositor: SectionCompositor<ILinearBox> = (chinese, ruby, options = {}) => {
-  const chars = Array.from(normalizeSingleLine(chinese));
-  const rubyGroups = normalizeSingleLine(ruby)
-    .split(/\s+/)
-    .map((group) => pinyin(group));
-
-  const units = chars.map((char, i) => ([char, rubyGroups[i]] as [string, string]));
-  return {
-    layout: getLinear(chars, rubyGroups, options),
   };
 };
 
@@ -117,20 +105,37 @@ const getGroupedLines: BoxCompsitor<string[][][], IGroupedLinesBox>
   };
 };
 
-const GroupedLinesCompositor: SectionCompositor<IGroupedLinesBox> = (chinese, ruby, options) => {
-  if (typeof options === undefined) {
-    options = defaultCompositorOptions;
-  } else {
-    options = Object.assign({}, defaultCompositorOptions, options);
-  }
+const LinearCompositor: SectionCompositor<ILinearBox> = (chinese, ruby, options = {}) => {
+  const chars = Array.from(normalizeSingleLine(chinese));
+  const rubyGroups = normalizeSingleLine(ruby)
+    .split(/\s+/)
+    .filter((r) => r.length > 0) // prevent empty strings
+    .map((r) => pinyin(r));
+
+  const units = chars.map((char, i) => ([char, rubyGroups[i]] as [string, string]));
+  return {
+    layout: getLinear(chars, rubyGroups, options),
+  };
+};
+
+const GroupedLinesCompositor: SectionCompositor<IGroupedLinesBox> = (chinese, ruby, options = {}) => {
+  options = Object.assign({}, defaultCompositorOptions, options);
 
   const chars = normalizeLines(chinese)
     .map((line) => line.split(/,\s*/).map((group) => Array.from(group)));
 
   const rubyGroups = normalizeLines(ruby)
-    .map((line) => line.split(/,\s*/).map((group) => group.split(/\s+/)));
+    .map(
+      (line) => line.split(/,\s*/)
+        .map(
+          (group) => group.split(/\s+/)
+            .map((r) => pinyin(r)),
+        ),
+    );
 
   return {
-    layout: getGroupedLines(chars, rubyGroups),
+    layout: getGroupedLines(chars, rubyGroups, options),
   };
 };
+
+export { getLinear, getGroupedLine, getGroupedLines, LinearCompositor, GroupedLinesCompositor };
