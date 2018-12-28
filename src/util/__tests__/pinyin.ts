@@ -1,5 +1,6 @@
 import { pinyin } from '../pinyin';
 
+// precomposed unicode characters used in pinyin
 // a: 'āáǎà'
 // o: 'ōóǒò'
 // e: 'ēéěè'
@@ -7,7 +8,7 @@ import { pinyin } from '../pinyin';
 // u: 'ūúǔù'
 // v: 'ǖǘǚǜ', 'ü'
 
-describe('pinyin.ts', () => {
+describe('pinyin', () => {
   test('fails on empty input', () => {
     expect(() => pinyin('')).toThrow();
     expect(() => pinyin('  ')).toThrow();
