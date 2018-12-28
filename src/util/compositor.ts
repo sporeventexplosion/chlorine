@@ -1,5 +1,5 @@
 import { normalizeLines, normalizeSingleLine } from './filetools';
-import pinyin from './pinyin';
+import { pinyin } from './pinyin';
 
 interface IDisplayBox {
   type: string;

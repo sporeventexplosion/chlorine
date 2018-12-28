@@ -30,4 +30,4 @@ const pinyin = (src: string): string => {
     .replace(/v/g, '\u00fc');
 };
 
-export default pinyin;
+export { pinyin };
